@@ -10,21 +10,247 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.ihome.muhammad.esp.MainActivity">
 
-    <Button
-        android:text="Hey there"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="177dp" />
+    <!--Group 1 -->
+    <RelativeLayout
+        android:id="@+id/group1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        android:id="@+id/textView"
-        android:layout_above="@+id/button"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="88dp" />
+        <Button
+            android:id="@+id/bsave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:text="Save" />
+
+        <EditText
+            android:id="@+id/etPASS"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/etSSID"
+            android:layout_marginTop="33dp"
+            android:hint="PASSWORD" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="17dp"
+            android:text="Enter WIFI SSID and PASSWORD"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/etSSID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView"
+            android:layout_marginTop="60dp"
+            android:hint="SSID" />
+    </RelativeLayout>
+
+    <!--Group 2 -->
+    <RelativeLayout
+        android:id="@+id/group2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="16dp"
+        android:visibility="invisible">
+
+        <Button
+            android:id="@+id/bconnect"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="199dp"
+            android:text="Connect" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/bconnect"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="93dp"
+            android:gravity="center"
+            android:text="Not Connected" />
+
+
+        <Button
+            android:id="@+id/bnext2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:text="Next" />
+    </RelativeLayout>
+
+    <!--Group 3 -->
+    <RelativeLayout
+        android:id="@+id/group3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="16dp"
+        android:visibility="invisible">
+
+        <Button
+            android:id="@+id/bget"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:text="Get Data" />
+
+        <TextView
+            android:id="@+id/tvdisplay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/bget"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:text="Not Connected" />
+
+
+        <Button
+            android:id="@+id/bnext3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:text="Next" />
+
+    </RelativeLayout>
+
+
+    <!--Group 4 -->
+    <RelativeLayout
+        android:id="@+id/group4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="16dp"
+        android:visibility="invisible">
+
+
+        <Button
+            android:id="@+id/bnext4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:text="Next" />
+
+        <Button
+            android:id="@+id/bsend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="152dp"
+            android:text="Send SSID and PASS" />
+
+
+    </RelativeLayout>
+
+
+    <!--Group 5 -->
+    <RelativeLayout
+        android:id="@+id/group5"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="16dp"
+        android:visibility="invisible">
+
+
+        <Button
+            android:id="@+id/bnext5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:text="Next" />
+
+        <Button
+            android:id="@+id/bsearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="152dp"
+            android:text="search" />
+
+
+    </RelativeLayout>
+    <!--Group 6 -->
+    <RelativeLayout
+        android:id="@+id/group6"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="16dp"
+        android:visibility="invisible">
+
+
+        <!--<Button-->
+        <!--android:id="@+id/bnext5"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:text="Next" />-->
+
+        <EditText
+            android:id="@+id/etcom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="89dp" />
+
+        <Button
+            android:id="@+id/bdo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/etcom"
+            android:layout_marginTop="127dp"
+            android:text="do" />
+
+
+    </RelativeLayout>
 </RelativeLayout>
