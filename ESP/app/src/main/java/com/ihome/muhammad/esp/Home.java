@@ -1,5 +1,6 @@
 package com.ihome.muhammad.esp;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import com.ihome.muhammad.esp.JAVA.DevicesAdapter;
 import com.ihome.muhammad.esp.JAVA.Device;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Home extends AppCompatActivity {
@@ -33,7 +35,7 @@ public class Home extends AppCompatActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
-        deviceList = new ArrayList<>();
+        deviceList = Arrays.asList(Device.getAll(this));
 
 
         adapter = new DevicesAdapter(this, deviceList);
@@ -49,7 +51,9 @@ public class Home extends AppCompatActivity {
 
 
     private void showAdd() {
-        Toast.makeText(this, "Add", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "Add", Toast.LENGTH_SHORT).show();
+        Intent i = new Intent(this, Add.class);
+        startActivity(i);
     }
 
     @Override
@@ -83,26 +87,31 @@ public class Home extends AppCompatActivity {
      * Adding few albums for testing
      */
     private void updateDevices() {
-        deviceList.clear();
-        deviceList.add(new Device("F312", "25:23:12:78:12:96", "Bed Room", "192.168.1.21"));
-        deviceList.add(new Device("A670", "25:23:12:45:12:96", "TV", "192.168.1.22"));
-        deviceList.add(new Device("A430", "25:23:34:78:12:96", "Computer", "192.168.1.23"));
-        deviceList.add(new Device("A670", "25:22:12:78:12:96", "Ali", "192.168.1.24"));
-        deviceList.add(new Device("A670", "12:23:12:78:12:96", "Master Room", "192.168.1.25"));
-        deviceList.add(new Device("B512", "25:23:12:23:12:96", "Kitchen", "192.168.1.26"));
-        deviceList.add(new Device("A670", "25:23:12:42:12:12", "Mohamed", "192.168.2.168.1.21"));
-        deviceList.add(new Device("A670", "25:23:12:45:12:96", "TV", "192.168.1.22"));
-        deviceList.add(new Device("A430", "25:23:34:78:12:96", "Computer", "192.168.1.23"));
-        deviceList.add(new Device("A670", "25:22:12:78:12:96", "Ali", "192.168.1.24"));
-        deviceList.add(new Device("A670", "12:23:12:78:12:96", "Master Room", "192.168.1.25"));
-        deviceList.add(new Device("B512", "25:23:12:23:12:96", "Kitchen", "192.168.1.26"));
-        deviceList.add(new Device("A670", "25:23:12:42:12:12", "Mohamed", "192.168.2.168.1.21"));
-        deviceList.add(new Device("A670", "25:23:12:45:12:96", "TV", "192.168.1.22"));
-        deviceList.add(new Device("A430", "25:23:34:78:12:96", "Computer", "192.168.1.23"));
-        deviceList.add(new Device("A670", "25:22:12:78:12:96", "Ali", "192.168.1.24"));
-        deviceList.add(new Device("A670", "12:23:12:78:12:96", "Master Room", "192.168.1.25"));
-        deviceList.add(new Device("B512", "25:23:12:23:12:96", "Kitchen", "192.168.1.26"));
-        deviceList.add(new Device("A670", "25:23:12:42:12:12", "Mohamed", "192.168.1.27"));
+//        deviceList.clear();
+        Device[] devs = Device.getAll(this);
+        for (Device d : devs) {
+            System.out.println("d=" + d.toString());
+        }
+        deviceList = Arrays.asList(devs);
+//        deviceList.add(new Device("F312", "25:23:12:78:12:96", "Bed Room", "192.168.1.21"));
+//        deviceList.add(new Device("A670", "25:23:12:45:12:96", "TV", "192.168.1.22"));
+//        deviceList.add(new Device("A430", "25:23:34:78:12:96", "Computer", "192.168.1.23"));
+//        deviceList.add(new Device("A670", "25:22:12:78:12:96", "Ali", "192.168.1.24"));
+//        deviceList.add(new Device("A670", "12:23:12:78:12:96", "Master Room", "192.168.1.25"));
+//        deviceList.add(new Device("B512", "25:23:12:23:12:96", "Kitchen", "192.168.1.26"));
+//        deviceList.add(new Device("A670", "25:23:12:42:12:12", "Mohamed", "192.168.2.168.1.21"));
+//        deviceList.add(new Device("A670", "25:23:12:45:12:96", "TV", "192.168.1.22"));
+//        deviceList.add(new Device("A430", "25:23:34:78:12:96", "Computer", "192.168.1.23"));
+//        deviceList.add(new Device("A670", "25:22:12:78:12:96", "Ali", "192.168.1.24"));
+//        deviceList.add(new Device("A670", "12:23:12:78:12:96", "Master Room", "192.168.1.25"));
+//        deviceList.add(new Device("B512", "25:23:12:23:12:96", "Kitchen", "192.168.1.26"));
+//        deviceList.add(new Device("A670", "25:23:12:42:12:12", "Mohamed", "192.168.2.168.1.21"));
+//        deviceList.add(new Device("A670", "25:23:12:45:12:96", "TV", "192.168.1.22"));
+//        deviceList.add(new Device("A430", "25:23:34:78:12:96", "Computer", "192.168.1.23"));
+//        deviceList.add(new Device("A670", "25:22:12:78:12:96", "Ali", "192.168.1.24"));
+//        deviceList.add(new Device("A670", "12:23:12:78:12:96", "Master Room", "192.168.1.25"));
+//        deviceList.add(new Device("B512", "25:23:12:23:12:96", "Kitchen", "192.168.1.26"));
+//        deviceList.add(new Device("A670", "25:23:12:42:12:12", "Mohamed", "192.168.1.27"));
 
         adapter.notifyDataSetChanged();
     }

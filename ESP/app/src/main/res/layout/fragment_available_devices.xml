@@ -1,0 +1,43 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.ihome.muhammad.esp.AvailableDevices">
+
+
+    <TextView
+        android:id="@+id/tvAvailableDevicesStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="Searching"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/bAddDevice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="22dp"
+        android:elevation="10dp"
+        android:text="Add" />
+
+    <TextView
+        android:id="@+id/tvDeviceInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/tvAvailableDevicesStatus"
+        android:layout_marginTop="37dp"
+        android:background="@android:color/black"
+        android:fontFamily="monospace"
+        android:text="INFO"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp"
+        tools:text="INFO" />
+
+</RelativeLayout>

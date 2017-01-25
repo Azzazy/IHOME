@@ -2,10 +2,13 @@ package com.ihome.muhammad.esp.JAVA;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.widget.Toast;
 
 import com.ihome.muhammad.esp.R;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -66,6 +69,10 @@ public class Device {
         SharedPreferences sharedPref = con.getSharedPreferences(
                 con.getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         Set<String> devices = sharedPref.getStringSet(con.getString(R.string.registered_devices_key), null);
+        if (devices == null) {
+            Toast.makeText(con, "No Registered Devices", Toast.LENGTH_SHORT).show();
+            return null;
+        }
         ArrayList<Device> devs = new ArrayList<>();
         for (String s : devices) {
             devs.add(new Device(s));
@@ -74,7 +81,33 @@ public class Device {
         return devs.toArray(ds);
     }
 
-    public String getRecord() {
+    public static void setAll(Context con, Device[] devices) {
+        ArrayList<String> devs = new ArrayList<>();
+        for (Device d : devices) {
+            devs.add(d.toString());
+        }
+        SharedPreferences sharedPref = con.getSharedPreferences(
+                con.getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putStringSet(con.getString(R.string.registered_devices_key), new HashSet<String>(devs));
+        editor.apply();
+        Toast.makeText(con, "Saved all", Toast.LENGTH_SHORT).show();
+    }
+
+    public static void add(Context con, Device device) {
+        Device currents[] = getAll(con);
+        ArrayList<Device> all;
+        if (currents != null) {
+            all = new ArrayList<>(Arrays.asList(currents));
+        } else {
+            all = new ArrayList<>();
+        }
+        all.add(device);
+        setAll(con, all.toArray(new Device[all.size()]));
+    }
+
+    @Override
+    public String toString() {
         String temp = "";
         temp += model + "_";
         temp += mac + "_";

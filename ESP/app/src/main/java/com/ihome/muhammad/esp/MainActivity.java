@@ -24,8 +24,11 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     String ssid, pass, mac = "5C:CF:7F:C1:1A:4C", myip, ip;
 
+    String espssid = "ESPap";
+    String esppass = "thereisnospoon";
     String techssid = "TECHPLANET";
     String techpass = "tech-planet";
+
     Button bsave, bcon, bnext2, bnext3, bnext4, bnext5, bget, bsend, bsearch, bdo;
     EditText etssid, etpass, etcom;
     RelativeLayout g1, g2, g3, g4, g5, g6;
@@ -69,8 +72,6 @@ public class MainActivity extends AppCompatActivity {
         bcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String espssid = "ESPap";
-                String esppass = "thereisnospoon";
                 if (setWifiConfig(espssid, esppass, true)) {
                     tvcon.setText("Connected!");
                 }
@@ -238,7 +239,6 @@ public class MainActivity extends AppCompatActivity {
         WifiConfiguration conf = new WifiConfiguration();
         conf.SSID = "\"" + ssid + "\"";   // Please note the quotes. String should contain ssid in quotes
         conf.preSharedKey = "\"" + sharedKey + "\"";
-
         conf.hiddenSSID = hidden;
         conf.status = WifiConfiguration.Status.ENABLED;
         conf.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.TKIP);
@@ -250,9 +250,7 @@ public class MainActivity extends AppCompatActivity {
         conf.allowedProtocols.set(WifiConfiguration.Protocol.WPA);
 
         WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-
         wifiManager.addNetwork(conf);
-
         List<WifiConfiguration> list = wifiManager.getConfiguredNetworks();
         try {
             for (WifiConfiguration i : list) {
