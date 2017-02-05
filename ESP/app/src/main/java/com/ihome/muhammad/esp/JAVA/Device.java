@@ -1,14 +1,17 @@
 package com.ihome.muhammad.esp.JAVA;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.widget.Toast;
 
+import com.ihome.muhammad.esp.Home;
 import com.ihome.muhammad.esp.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -48,6 +51,10 @@ public class Device {
 
     public void setIp(String ip) {
         this.ip = ip;
+    }
+
+    public static Device getTest() {//debug
+        return new Device("TEST123", "TE:ST:TE:ST", "The Test Machine", "192.168.1.1");
     }
 
     public Device(String record) {
@@ -114,5 +121,15 @@ public class Device {
         temp += name + "_";
         temp += ip;
         return temp;
+    }
+
+    public static Device getWithMac(List<Device> deviceList, String mac) {
+        for (Device d : deviceList) {
+            if (d.mac.equals(mac)) {
+                return d;
+            }
+        }
+        System.out.println("no matching device found");//debug
+        return null;
     }
 }

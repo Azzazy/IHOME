@@ -6,6 +6,7 @@ package com.ihome.muhammad.esp.JAVA;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,6 +18,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ihome.muhammad.esp.DevicePage;
+import com.ihome.muhammad.esp.Home;
 import com.ihome.muhammad.esp.R;
 
 import java.util.List;
@@ -40,7 +43,10 @@ public class DevicesAdapter extends RecyclerView.Adapter<DevicesAdapter.MyViewHo
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(mContext, id + " is Clicked", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, id + " is Clicked", Toast.LENGTH_SHORT).show();//debug
+                    Intent i = new Intent(v.getContext(), DevicePage.class);
+                    i.putExtra(Home.ID_STRING, id);
+                    v.getContext().startActivity(i);
                 }
             });
         }

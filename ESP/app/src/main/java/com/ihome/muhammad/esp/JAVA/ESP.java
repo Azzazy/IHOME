@@ -5,10 +5,13 @@ package com.ihome.muhammad.esp.JAVA;
  */
 
 public class ESP {
-    final private static String BASE = "http://192.168.4.1/";
-    final private static String INFO = "info";
-    final private static String CONNECT = "connect";
-    final private static String COMMAND = "do";
+
+    final public static String HTTP_PRE = "http://";
+
+    final private static String BASE = "http://192.168.4.1";
+    final private static String INFO = "/info";
+    final private static String CONNECT = "/connect";
+    final private static String COMMAND = "/do";
 
     final private static String SSID = "ssid";
     final private static String PASS = "password";
@@ -16,8 +19,8 @@ public class ESP {
     final public static String AP_SSID = "ESPap";
     final public static String AP_PASS = "thereisnospoon";
 
-    private static String get(String dist) {
-        return BASE + dist + "?";
+    private static String get(String ip, String dist) {
+        return ip + dist + "?";
     }
 
     private static String arg(String parm, String arg) {
@@ -25,10 +28,10 @@ public class ESP {
     }
 
     public static String getConnectURL(String ssid, String pass) {
-        return get(CONNECT) + arg(SSID, ssid) + arg(PASS, pass);
+        return get(BASE, CONNECT) + arg(SSID, ssid) + arg(PASS, pass);
     }
 
-    public static String getInfoURL() {
-        return get(INFO);
+    public static String getInfoURL(String ip) {
+        return (ip == null) ? get(BASE, INFO) : get(ip, INFO);
     }
 }

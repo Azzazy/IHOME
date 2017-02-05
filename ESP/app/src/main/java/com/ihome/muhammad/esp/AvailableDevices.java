@@ -1,6 +1,7 @@
 package com.ihome.muhammad.esp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.net.wifi.WifiConfiguration;
@@ -25,6 +26,8 @@ import org.jsoup.nodes.Element;
 
 import java.util.List;
 import java.util.Set;
+
+import static com.ihome.muhammad.esp.Home.show;
 
 
 /**
@@ -79,23 +82,29 @@ public class AvailableDevices extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        if (setWifiConfig(ESP.AP_SSID, ESP.AP_PASS, true)) {
-            tvInfo = (TextView) getView().findViewById(R.id.tvDeviceInfo);
-            tvStatus = (TextView) getView().findViewById(R.id.tvAvailableDevicesStatus);
-            String infourl = ESP.getInfoURL();
-            new RequestInfoTask().execute(infourl, ESP.AP_SSID);
-        } else {
-            Toast.makeText(getContext(), "Not Connected to ESP!!", Toast.LENGTH_SHORT).show();
-        }
+        tvInfo = (TextView) getView().findViewById(R.id.tvDeviceInfo);
+        tvStatus = (TextView) getView().findViewById(R.id.tvAvailableDevicesStatus);
         getView().findViewById(R.id.bAddDevice).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String url = ESP.getConnectURL(ssid, pass);
-                Toast.makeText(getContext(), url, Toast.LENGTH_SHORT).show();
-                new ConnectTask().execute(url);
+                Toast.makeText(getContext(), url, Toast.LENGTH_SHORT).show();//debug
+//                new ConnectTask().execute(url);//debug
+                dev = new Device("ABC123", "ab:cd:ef:gh", "Room", "0000");
+                show(getActivity(), "the dev" + dev.toString());
                 Device.add(getContext(), dev);
+                show(getActivity(), "done adding");
+                Intent i = new Intent(getContext(), Home.class);
+                getContext().startActivity(i);
             }
         });
+        Toast.makeText(getContext(), "We are here", Toast.LENGTH_SHORT).show();
+//        if (setWifiConfig(ESP.AP_SSID, ESP.AP_PASS, true)) {//debug
+//            new RequestInfoTask().execute(ESP.getInfoURL(), ESP.AP_SSID);
+//        } else {
+//            Toast.makeText(getContext(), "Not Connected to ESP!!", Toast.LENGTH_SHORT).show();
+//        }
+
     }
 
     @Override
