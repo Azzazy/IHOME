@@ -8,6 +8,9 @@ import android.widget.Toast;
 import com.ihome.muhammad.esp.Home;
 import com.ihome.muhammad.esp.R;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -123,13 +126,21 @@ public class Device {
         return temp;
     }
 
-    public static Device getWithMac(List<Device> deviceList, String mac) {
-        for (Device d : deviceList) {
-            if (d.mac.equals(mac)) {
-                return d;
+    public static Device getDeviceOrNull(List<Device> deviceList, String ip) {
+        try {
+            Document doc = Jsoup.connect(ESP.HTTP_PRE + ESP.getInfoURL(ip)).get();//if passed this then it's a device
+            String mac = doc.select(ESP.TAG_MAC).first().text();
+            System.out.println("mac=" + mac);//debug
+            for (Device d : deviceList) {
+                if (d.mac.equals(mac)) {
+                    return d;
+                }
             }
+            System.out.println("no matching device found");//debug
+        } catch (Exception e) {
+//    e.printStackTrace();//for saving time
+            System.out.println("failed at ip " + ip);
         }
-        System.out.println("no matching device found");//debug
         return null;
     }
 }

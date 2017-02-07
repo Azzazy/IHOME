@@ -6,6 +6,9 @@ package com.ihome.muhammad.esp.JAVA;
 
 public class ESP {
 
+    final public static String TAG_MAC = "macAddress";
+    final public static String TAG_MODEL = "model";
+
     final public static String HTTP_PRE = "http://";
 
     final private static String BASE = "http://192.168.4.1";

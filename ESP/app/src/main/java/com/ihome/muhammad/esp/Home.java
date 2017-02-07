@@ -20,20 +20,12 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.ihome.muhammad.esp.JAVA.DevicesAdapter;
 import com.ihome.muhammad.esp.JAVA.Device;
-import com.ihome.muhammad.esp.JAVA.ESP;
+import com.ihome.muhammad.esp.JAVA.DevicesAdapter;
 import com.ihome.muhammad.esp.JAVA.Utils;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.w3c.dom.Text;
-
-import java.net.InetAddress;
-import java.net.NetworkInterface;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class Home extends AppCompatActivity {
@@ -63,9 +55,12 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-
-        savedDeviceList = Arrays.asList(Device.getAll(this));
-
+        Device[] d = Device.getAll(this);
+        if (d != null) {
+            savedDeviceList = Arrays.asList(d);
+        } else {
+            savedDeviceList = null;
+        }
         currentDeviceList = new ArrayList<>();
         adapter = new DevicesAdapter(this, currentDeviceList);
         tvStat = (TextView) findViewById(R.id.tvHomeStatus);
@@ -83,6 +78,7 @@ public class Home extends AppCompatActivity {
 
     private void showAdd() {
 //        Toast.makeText(this, "Add", Toast.LENGTH_SHORT).show();
+        //todo show an intermediate activity for the user choose whether he wants toa add a device connected to the network or not
         Intent i = new Intent(this, Add.class);
         startActivity(i);
     }
@@ -110,18 +106,22 @@ public class Home extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        tvStat.setText("Searching for Devices on the network");
         updateCurrentDeviceList();
-
     }
 
     public static void updateSavedDeviceList(Activity con) {
-        savedDeviceList = Arrays.asList(Device.getAll(con));
+        Device[] d = Device.getAll(con);
+        if (d != null) {
+            savedDeviceList = Arrays.asList(d);
+        } else {
+            savedDeviceList = null;
+        }
 //        show(con, "savedDeviceList updated");//debug
     }
 
     private void updateCurrentDeviceList() {
         //todo search for the devices in the network
+        tvStat.setText("Searching for Devices on the network");
         updateSavedDeviceList(this);
         searchForDevices();
 
@@ -140,17 +140,16 @@ public class Home extends AppCompatActivity {
                 try {
                     //Assuming uri[0] = "192.168.1.236"
                     String baseIP = uri[0].substring(0, uri[0].lastIndexOf('.') + 1);
-                    String infoDir = ESP.HTTP_PRE + ESP.getInfoURL(baseIP + i);
+//                    String infoDir = ESP.HTTP_PRE + ESP.getInfoURL(baseIP + i);
 //                    System.out.println("trying in " + infoDir);//debug
-
-                    Document doc = Jsoup.connect(baseIP + i + infoDir).get();//if passed this then it's a device
-
-                    String mac = doc.select("macAddress").first().text();
-                    System.out.println("mac=" + mac);//debug
-
-                    Device d = Device.getWithMac(savedDeviceList, mac);
-                    if (d != null)
+                    Device d = Device.getDeviceOrNull(savedDeviceList, baseIP + i);
+                    if (d != null) {
                         currentDeviceList.add(d);
+                    } else {
+                        //device is not registered in the Added devices, shall not be added
+                        //todo check that this is the right thing to do logically
+                        continue;
+                    }
                 } catch (Exception e) {
 //                    e.printStackTrace();//too much time wasted//debug
                     x[0] = "exception";

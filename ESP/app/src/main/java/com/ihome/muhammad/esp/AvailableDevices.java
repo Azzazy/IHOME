@@ -175,8 +175,8 @@ public class AvailableDevices extends Fragment {
         protected void onPostExecute(Document result) {
             tvInfo.setText(Html.fromHtml(result.outerHtml()));
             tvStatus.setText("Found Device");
-            String model = result.select("model").first().text();
-            String mac = result.select("macAddress").first().text();
+            String model = result.select(ESP.TAG_MODEL).first().text();
+            String mac = result.select(ESP.TAG_MAC).first().text();
             dev = new Device(model, mac, model, "0");
         }
     }
