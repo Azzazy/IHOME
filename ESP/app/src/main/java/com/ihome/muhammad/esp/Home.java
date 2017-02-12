@@ -136,7 +136,8 @@ public class Home extends AppCompatActivity {
         protected String[] doInBackground(String... uri) {
             long t = System.currentTimeMillis();//debug
             String[] x = new String[2/*debug*/];
-            for (int i = 0; i <= 255; i++) {
+//            for (int i = 0; i <= 255; i++) {
+            for (int i = 0; i <= 0; i++) {//debug
                 try {
                     //Assuming uri[0] = "192.168.1.236"
                     String baseIP = uri[0].substring(0, uri[0].lastIndexOf('.') + 1);
@@ -148,7 +149,7 @@ public class Home extends AppCompatActivity {
                     } else {
                         //device is not registered in the Added devices, shall not be added
                         //todo check that this is the right thing to do logically
-                        continue;
+//                        continue;
                     }
                 } catch (Exception e) {
 //                    e.printStackTrace();//too much time wasted//debug
@@ -165,7 +166,9 @@ public class Home extends AppCompatActivity {
             System.out.println("Done in " + result[1] + "ms");
             show(getApplicationContext(), "Done Searching in " + result[1] + "ms");
             tvStat.setText("Done");
-//            currentDeviceList.add(Device.getTest());//debug
+            if (currentDeviceList.isEmpty()) {//  Add a mock device if no one is Available
+                currentDeviceList.add(Device.getTest());//debug
+            }
             adapter.notifyDataSetChanged();
         }
     }

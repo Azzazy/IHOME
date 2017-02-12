@@ -38,7 +38,7 @@ public class DevicesAdapter extends RecyclerView.Adapter<DevicesAdapter.MyViewHo
             super(view);
             name = (TextView) view.findViewById(R.id.name);
             type = (TextView) view.findViewById(R.id.type);
-            overflow = (ImageView) view.findViewById(R.id.overflow);
+//            overflow = (ImageView) view.findViewById(R.id.overflow);//No need for it anymore
             id = -1;
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -76,12 +76,12 @@ public class DevicesAdapter extends RecyclerView.Adapter<DevicesAdapter.MyViewHo
         // loading album cover using Glide library
 //        Glide.with(mContext).load(device.getThumbnail()).into(holder.thumbnail);
 
-        holder.overflow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showPopupMenu(holder.overflow);
-            }
-        });
+//        holder.overflow.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                showPopupMenu(holder.overflow);
+//            }
+//        });
     }
 
     /**
@@ -89,11 +89,12 @@ public class DevicesAdapter extends RecyclerView.Adapter<DevicesAdapter.MyViewHo
      */
     private void showPopupMenu(View view) {
         // inflate menu
-        PopupMenu popup = new PopupMenu(mContext, view);
-        MenuInflater inflater = popup.getMenuInflater();
-        inflater.inflate(R.menu.menu_device, popup.getMenu());
-        popup.setOnMenuItemClickListener(new MyMenuItemClickListener());
-        popup.show();
+        //No need for a popup menu
+//        PopupMenu popup = new PopupMenu(mContext, view);
+//        MenuInflater inflater = popup.getMenuInflater();
+//        inflater.inflate(R.menu.menu_device, popup.getMenu());
+//        popup.setOnMenuItemClickListener(new MyMenuItemClickListener());
+//        popup.show();
     }
 
     /**

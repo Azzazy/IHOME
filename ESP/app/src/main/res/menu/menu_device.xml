@@ -11,4 +11,9 @@
         android:id="@+id/action_device_rename"
         android:orderInCategory="101"
         android:title="@string/action_device_rename" />
+
+    <item
+        android:id="@+id/action_device_share"
+        android:orderInCategory="102"
+        android:title="@string/action_device_share" />
 </menu>

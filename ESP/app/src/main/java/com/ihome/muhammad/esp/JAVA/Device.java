@@ -57,7 +57,7 @@ public class Device {
     }
 
     public static Device getTest() {//debug
-        return new Device("TEST123", "TE:ST:TE:ST", "The Test Machine", "192.168.1.1");
+        return new Device("TEST123", "TE:ST:TE:ST", "The Test Machine", "192.168.1.2");
     }
 
     public Device(String record) {

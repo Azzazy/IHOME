@@ -48,14 +48,15 @@
                 android:text="Device Type"
                 android:textSize="@dimen/songs_count" />
 
-            <ImageView
-                android:id="@+id/overflow"
-                android:layout_width="@dimen/ic_album_overflow_width"
-                android:layout_height="@dimen/ic_album_overflow_height"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="@dimen/ic_album_overflow_margin_top"
-                android:scaleType="centerCrop"
-                android:src="@android:drawable/ic_menu_sort_by_size" />
+            <!--No Need for it as these options are displayed in the DevicePage-->
+            <!--<ImageView-->
+                <!--android:id="@+id/overflow"-->
+                <!--android:layout_width="@dimen/ic_album_overflow_width"-->
+                <!--android:layout_height="@dimen/ic_album_overflow_height"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_marginTop="@dimen/ic_album_overflow_margin_top"-->
+                <!--android:scaleType="centerCrop"-->
+                <!--android:src="@android:drawable/ic_menu_sort_by_size" />-->
             <!--card_view:srcCompat="?android:attr/floatingToolbarOpenDrawable" -->
 
 
